@@ -1,0 +1,27 @@
+{
+  "name": "liveserver",
+  "version": "1.0.0",
+  "description": "ExpressJS Livereload local server",
+  "main": "serve.js",
+  "scripts": {
+    "start": "gulp && node serve",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Matthieu Lassalvy",
+  "license": "MIT",
+  "devDependencies": {
+    "express": "^4.13.3",
+    "express-livereload": "0.0.24",
+    "gulp": "^3.9.0",
+    "gulp-batch": "^1.0.5",
+    "gulp-jshint": "^1.11.2",
+    "gulp-less": "^3.0.3",
+    "gulp-mustacher": "^0.1.9",
+    "gulp-plumber": "^1.0.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^2.0.4",
+    "gulp-sourcemaps": "^1.5.2",
+    "gulp-watch": "^4.3.5",
+    "jshint-stylish": "^2.0.1"
+  }
+}
