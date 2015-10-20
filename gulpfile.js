@@ -9,11 +9,12 @@
 (function () {
 
     'use strict';
-    
-    require();
+
+    require('gulp/build');
+    require('gulp/gulp-preen');
 
     var gulp = require('gulp');
 
-    gulp.task('default', ['build']);
+    gulp.task('default', ['preen', 'build']);
 
 }());
