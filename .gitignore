@@ -1,7 +1,9 @@
 
+.gitkeep
 .DS_STORE
 npm-debug.log
 
+dist/
 build/
 node_modules/
 bower_components/

@@ -1,0 +1,19 @@
+{
+  "name": "liveserver",
+  "description": "ExpressJS Static Server + Livereload",
+  "main": "serve.js",
+  "authors": [
+    "Matthieu Lassalvy"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/sixertoy/server_nodejs",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "preen": []
+}
