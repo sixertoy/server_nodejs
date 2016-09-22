@@ -1,16 +1,13 @@
-/* global require, __dirname, console */
+/* global require, __dirname, process */
 (function () {
 
     'use strict';
 
     require('dotenv').load();
 
-    var // variables
-        server, paths,
+    var server, paths,
         port = process.env.PORT || 8080,
-        debug = process.env.DEBUG || false,
-        livereload_port = process.env.LIVERELOAD_PORT || false,
-        // requires
+        livereloadPort = process.env.LIVERELOAD_PORT || false,
         path = require('path'),
         express = require('express'),
         bodyParser = require('body-parser'),
@@ -26,12 +23,31 @@
     server = express();
     //
     // livereload
-    if (livereload_port) {
+    if (livereloadPort) {
         livereload(server, {
             watchDir: paths.www,
-            port: livereload_port,
-            exclusions: ['git/', '.svn/'],
-            exts: ['pbf', 'html', 'css', 'js', 'png', 'gif', 'jpg', 'svg', 'woff', 'eot', 'ttf', 'woff2']
+            port: livereloadPort,
+            exclusions: [
+                'git/',
+                '.svn/',
+                'node_modules/',
+                'bower_components/'
+            ],
+            exts: [
+                'js',
+                'css',
+                'eot',
+                'gif',
+                'jpg',
+                'pbf',
+                'png',
+                'svg',
+                'ttf',
+                'html',
+                'woff',
+                'woff2',
+                'geojson'
+            ]
         });
     }
     //
@@ -49,11 +65,11 @@
     server.use('/', express.static(paths.www));
 
     server.listen(port, function () {
-        var msg = 'Application now running under http://localhost:%d';
-        console.log(msg, port);
-        if (livereload_port) {
-            msg = 'Livereload is running on port %d'
-            console.log(msg, livereload_port);
+        var msg = 'Application now running under http://localhost: ' + port + '\n';
+        process.stdout.write(msg);
+        if (livereloadPort) {
+            msg = 'Livereload is running on port ' + livereloadPort + '\n';
+            process.stdout.write(msg);
         }
     });
 
