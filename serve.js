@@ -1,29 +1,28 @@
 /* global require, __dirname, process */
-(function () {
+(function() {
 
     'use strict';
 
     require('dotenv').load();
 
     var server, paths,
-        port = process.env.PORT || 8080,
-        livereloadPort = process.env.LIVERELOAD_PORT || false,
+        dist = process.env.DIST || 'dist',
+        port = Number(process.env.PORT) || 1338,
+        livereloadPort = Number(process.env.LIVERELOAD_PORT) || false,
         path = require('path'),
         express = require('express'),
         bodyParser = require('body-parser'),
-        compression = require('compression'),
-        livereload = require('express-livereload');
-    //
+        compression = require('compression');
+        // livereload = require('express-livereload');
+
     // app paths
     paths = {
-        www: path.join(__dirname)
+        www: path.join(__dirname, dist)
     };
-    //
-    // express
-    server = express();
-    //
-    // livereload
+
     if (livereloadPort) {
+
+        /*
         livereload(server, {
             watchDir: paths.www,
             port: livereloadPort,
@@ -49,8 +48,11 @@
                 'geojson'
             ]
         });
+        */
     }
-    //
+
+    // express
+    server = express();
     // gzip
     server.use(compression());
     // for parsing application/json
@@ -64,7 +66,7 @@
     // pour l'app AngularJS/Front
     server.use('/', express.static(paths.www));
 
-    server.listen(port, function () {
+    server.listen(port, function() {
         var msg = 'Application now running under http://localhost: ' + port + '\n';
         process.stdout.write(msg);
         if (livereloadPort) {
